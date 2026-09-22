@@ -3,7 +3,7 @@ services:
     name: portal-empleo
     runtime: docker
     plan: free
-    healthCheckPath: /up
+    healthCheckPath: /
     envVars:
       - key: APP_NAME
         value: Portal Empleo
