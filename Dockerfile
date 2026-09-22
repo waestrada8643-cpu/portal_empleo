@@ -41,4 +41,4 @@ RUN sed -ri -e "s!/var/www/html!${APACHE_DOCUMENT_ROOT}!g" /etc/apache2/sites-av
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan migrate --force && php artisan storage:link --force && apache2-foreground"]
+CMD ["sh", "-c", "if [ -z \"$APP_KEY\" ] || ! echo \"$APP_KEY\" | grep -q '^base64:'; then export APP_KEY=\"base64:$(php -r 'echo base64_encode(random_bytes(32));')\"; fi; php artisan migrate --force && php artisan storage:link --force && apache2-foreground"]
