@@ -22,7 +22,7 @@
         .main-nav {
             background: #0f1117;
             border-bottom: 1px solid #2a2d3e;
-            padding: 0.9rem 3rem;
+            padding: 1.5rem 3.8rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -31,37 +31,50 @@
             z-index: 100;
         }
         .nav-brand {
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center; gap: 12px;
             text-decoration: none;
         }
         .nav-brand .icon {
-            width: 34px; height: 34px; background: #534AB7;
-            border-radius: 9px; display: flex; align-items: center; justify-content: center;
+            width: 42px; height: 42px; background: #534AB7;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
         }
-        .nav-brand .icon i { color: #fff; font-size: 18px; }
-        .nav-brand span { color: #fff; font-size: 15px; font-weight: 600; }
+        .nav-brand .icon i { color: #fff; font-size: 20px; }
+        .nav-brand span { color: #fff; font-size: 17px; font-weight: 700; }
         .nav-links {
-            display: flex; align-items: center; gap: 24px;
+            display: flex; align-items: center; gap: 32px;
         }
         .nav-links a {
-            color: #8b8fa8; font-size: 13px; text-decoration: none;
-            transition: color 0.15s;
+            color: #8b8fa8; font-size: 16px; text-decoration: none;
+            transition: color 0.15s, background 0.15s, border-color 0.15s, box-shadow 0.15s;
+            padding: 8px 12px;
+            border-radius: 10px;
+            border: 1px solid transparent;
         }
         .nav-links a:hover { color: #fff; }
+        .nav-links a.active {
+            color: #fff;
+            background: rgba(124, 58, 237, 0.12);
+            border-color: rgba(161, 140, 255, 0.35);
+            box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.14);
+        }
         .btn-login {
             background: transparent; border: 1px solid #2a2d3e;
-            color: #c4c1f5; border-radius: 8px; padding: 6px 16px;
-            font-size: 13px; cursor: pointer; transition: all 0.15s;
+            color: #c4c1f5; border-radius: 12px; padding: 11px 24px;
+            font-size: 15px; cursor: pointer; transition: all 0.15s;
             text-decoration: none;
         }
         .btn-login:hover { border-color: #7F77DD; color: #fff; }
         .btn-reg {
-            background: #534AB7; border: none;
-            color: #fff; border-radius: 8px; padding: 6px 16px;
-            font-size: 13px; cursor: pointer; transition: background 0.15s;
+            background: transparent; border: 1px solid #2a2d3e;
+            color: #fff; border-radius: 12px; padding: 11px 22px;
+            font-size: 15px; cursor: pointer; transition: background 0.15s;
             text-decoration: none;
         }
-        .btn-reg:hover { background: #3C3489; }
+        .btn-reg:hover { background: #534AB7; }
+        .btn-reg.active {
+            background: #534AB7;
+            border-color: #534AB7;
+        }
         .btn-logout {
             background: transparent; border: 1px solid #2a2d3e;
             color: #c4c1f5; border-radius: 8px; padding: 6px 16px;
@@ -124,14 +137,14 @@
         </button>
 
         <div class="nav-links" id="navLinks">
-            <a href="{{ route('inicio') }}">Inicio</a>
-            <a href="{{ route('menu') }}">Servicios</a>
-            <a href="{{ route('nosotros') }}">Nosotros</a>
-            <a href="{{ route('contacto.index') }}">Contacto</a>
+            <a href="{{ route('inicio') }}" class="{{ request()->routeIs('inicio') ? 'active' : '' }}">Inicio</a>
+            <a href="{{ route('menu') }}" class="{{ request()->routeIs('menu') ? 'active' : '' }}">Servicios</a>
+            <a href="{{ route('nosotros') }}" class="{{ request()->routeIs('nosotros') ? 'active' : '' }}">Nosotros</a>
+            <a href="{{ route('contacto.index') }}" class="{{ request()->routeIs('contacto.index') ? 'active' : '' }}">Contacto</a>
 
             @guest
-                <a href="{{ route('register') }}" class="btn-reg">Registro</a>
-                <a href="{{ route('login') }}" class="btn-login">Iniciar sesión</a>
+                <a href="{{ route('register') }}" class="btn-reg {{ request()->routeIs('register') ? 'active' : '' }}">Registro</a>
+                <a href="{{ route('login') }}" class="btn-login {{ request()->routeIs('login') ? 'active' : '' }}">Iniciar sesión</a>
             @endguest
 
             @auth

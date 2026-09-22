@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contacto;
 use Illuminate\Http\Request;
 
 class ContactoController extends Controller
@@ -18,10 +19,20 @@ class ContactoController extends Controller
             'email'   => ['required', 'email', 'max:100'],
             'asunto'  => ['required', 'string', 'max:150'],
             'mensaje' => ['required', 'string', 'max:1000'],
+        ], [
+            'nombre.required'  => 'El nombre es obligatorio.',
+            'email.required'   => 'El correo es obligatorio.',
+            'email.email'      => 'Ingresa un correo válido.',
+            'asunto.required'  => 'El asunto es obligatorio.',
+            'mensaje.required' => 'El mensaje es obligatorio.',
         ]);
 
-        // Aquí puedes agregar lógica para enviar email si lo necesitas
-        // Mail::to('tu@correo.com')->send(new ContactoMail($request->all()));
+        Contacto::create([
+            'nombre'  => $request->nombre,
+            'email'   => $request->email,
+            'asunto'  => $request->asunto,
+            'mensaje' => $request->mensaje,
+        ]);
 
         return back()->with('success', '¡Mensaje enviado correctamente! Te contactaremos pronto.');
     }

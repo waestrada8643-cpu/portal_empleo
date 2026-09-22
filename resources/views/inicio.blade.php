@@ -18,32 +18,32 @@
         .nav {
             position: relative; z-index: 2;
             display: flex; align-items: center; justify-content: space-between;
-            padding: 1.1rem 3rem; border-bottom: 1px solid #2a2d3e;
+            padding: 1.6rem 3.8rem; border-bottom: 1px solid #2a2d3e;
         }
-        .nav-brand { display: flex; align-items: center; gap: 10px; }
+        .nav-brand { display: flex; align-items: center; gap: 14px; }
         .nav-brand .icon {
-            width: 34px; height: 34px; background: #534AB7;
-            border-radius: 9px; display: flex; align-items: center; justify-content: center;
+            width: 42px; height: 42px; background: #534AB7;
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
         }
-        .nav-brand .icon i { color: #fff; font-size: 18px; }
-        .nav-brand span { color: #fff; font-size: 15px; font-weight: 600; }
-        .nav-links { display: flex; align-items: center; gap: 24px; }
-        .nav-links a { color: #8b8fa8; font-size: 13px; text-decoration: none; transition: color 0.15s; }
+        .nav-brand .icon i { color: #fff; font-size: 22px; }
+        .nav-brand span { color: #fff; font-size: 17px; font-weight: 700; }
+        .nav-links { display: flex; align-items: center; gap: 32px; }
+        .nav-links a { color: #8b8fa8; font-size: 16px; text-decoration: none; transition: color 0.15s; }
         .nav-links a:hover { color: #fff; }
         .btn-login {
             background: transparent; border: 1px solid #2a2d3e;
-            color: #c4c1f5; border-radius: 8px; padding: 6px 16px;
-            font-size: 13px; cursor: pointer; transition: all 0.15s;
+            color: #c4c1f5; border-radius: 12px; padding: 11px 24px;
+            font-size: 15px; cursor: pointer; transition: all 0.15s;
             text-decoration: none;
         }
         .btn-login:hover { border-color: #7F77DD; color: #fff; }
         .btn-reg {
-            background: #534AB7; border: none;
-            color: #fff; border-radius: 8px; padding: 6px 16px;
-            font-size: 13px; cursor: pointer; transition: background 0.15s;
+            background: transparent; border: 1px solid #2a2d3e;
+            color: #fff; border-radius: 12px; padding: 11px 22px;
+            font-size: 15px; cursor: pointer; transition: background 0.15s;
             text-decoration: none;
         }
-        .btn-reg:hover { background: #3C3489; }
+        .btn-reg:hover { background: #534AB7; }
 
         .hero-body {
             position: relative; z-index: 2;
@@ -194,7 +194,7 @@
             </div>
             <div class="nav-links">
                 <a href="{{ route('inicio') }}">Inicio</a>
-                <a href="#">Servicios</a>
+                <a href="{{ route('menu') }}">Servicios</a>
                 <a href="{{ route('nosotros') }}">Nosotros</a>
                 <a href="{{ route('contacto.index') }}">Contacto</a>
                 @auth
@@ -221,13 +221,15 @@
             <p class="hero-sub">
                 Conectamos talento con las mejores empresas. Miles de oportunidades laborales en un solo lugar.
             </p>
-            <div class="search-bar">
-                <i class="ti ti-search"></i>
-                <input type="text" placeholder="Cargo, empresa o área de trabajo..." />
-                <button type="button">
-                    <i class="ti ti-search"></i> Buscar
-                </button>
-            </div>
+            <form method="GET" action="{{ route('buscar') }}" style="max-width: 540px; margin: 0 auto 2rem;">
+                <div class="search-bar">
+                    <i class="ti ti-search"></i>
+                    <input type="text" name="q" value="{{ request('q') }}" placeholder="Cargo, empresa o área de trabajo..." />
+                    <button type="submit">
+                        <i class="ti ti-search"></i> Buscar
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -254,7 +256,7 @@
                 </div>
                 <h3>Busco candidatos</h3>
                 <p>Encuentra el talento ideal para tu empresa de forma rápida y sencilla.</p>
-                <a href="{{ route('register') }}" class="tipo-btn green">
+                <a href="{{ route('register') }}?tipo=empresa" class="tipo-btn green">
                     <i class="ti ti-arrow-right"></i> Comenzar
                 </a>
             </div>
@@ -302,6 +304,41 @@
             <a href="#" class="btn-ghost">Ver empleos disponibles</a>
         </div>
     </div>
+    <!-- VIDEO -->
+    <div class="light-section" style="background:#ffffff;">
+       <div class="section-header">
+            <h2>Descubre cómo funciona nuestro portal</h2>
+             <p>Conoce todas las oportunidades que tenemos para ti</p>
+       </div>
+
+      <div style="max-width:900px; margin:0 auto;">
+          <div style="
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+         ">
+            <iframe
+                src="https://www.youtube.com/embed/r_h3Nb8WYHQ"
+                title="Video Portal de Empleo"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                style="
+                    position:absolute;
+                    top:0;
+                    left:0;
+                    width:100%;
+                    height:100%;
+                    border:none;
+                    border-radius:18px;
+                ">
+             </iframe>
+            </div>
+         </div>
+     </div>
 
     <!-- FOOTER -->
     <footer class="footer">

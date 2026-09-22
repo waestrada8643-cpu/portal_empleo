@@ -16,13 +16,15 @@ Route::get('/nosotros', function () {
     return view('nosotros');
 })->name('nosotros');
 
+Route::get('/buscar', [\App\Http\Controllers\BusquedaController::class, 'index'])->name('buscar');
+
 Route::get('/contacto', [ContactoController::class, 'index'])->name('contacto.index');
 Route::post('/contacto', [ContactoController::class, 'store'])->name('contacto.store');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+// Ya protegida
 Route::get('/mensajes', function () {
     return view('mensajes');
 })->middleware('auth')->name('mensajes');
