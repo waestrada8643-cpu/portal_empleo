@@ -6,6 +6,13 @@ test('registration screen can be rendered', function () {
     $response->assertStatus(200);
 });
 
+test('registration form uses HTTPS behind a reverse proxy', function () {
+    $response = $this->withHeader('X-Forwarded-Proto', 'https')->get('/register');
+
+    $response->assertOk();
+    $response->assertSee('action="https://localhost/register"', false);
+});
+
 test('new users can register', function () {
     $response = $this->post('/register', [
         'name' => 'Test User',
